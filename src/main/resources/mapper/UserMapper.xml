@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.school.hotel.mapper.UserMapper">
+    <select id="findUsers" resultType="user">
+        select * from user;
+    </select>
+    <select id="login" resultType="user">
+        select * from user where username = #{username} and password = #{password};
+    </select>
+    <select id="findUserById" resultType="user" parameterType="long">
+        select * from user where id = #{id};
+    </select>
+    <select id="getAccounts" resultType="account" parameterType="map">
+        select * from account
+        <where>
+            <if test="name != null and name != ''">
+                name like '%${name}%' or realName like '%${name}%'
+            </if>
+            <if test="idCard != null and idCard != ''">
+                and idCard like '%${idCard}%'
+            </if>
+        </where>
+        <if test="startPage != null and pageSize != null">
+            limit #{startPage}, #{pageSize}
+        </if>
+    </select>
+    <select id="getTotalCount" resultType="int">
+        select count(*) from account
+        <where>
+            <if test="name != null and name != ''">
+                name like '%${name}%' or realName like '%${name}%'
+            </if>
+            <if test="idCard != null and idCard != ''">
+                and idCard like '%${idCard}%'
+            </if>
+        </where>
+    </select>
+    <delete id="deleteCountById" parameterType="int">
+        delete from account where id = #{id};
+    </delete>
+    <update id="updateAccount" parameterType="account">
+        update account set name = #{name}, password = #{password}, realName = #{realName}, idCard = #{idCard},
+        mobile = #{mobile}, address = #{address}, status = #{status} where id = #{id};
+    </update>
+</mapper>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.school.hotel.mapper.FloorMapper">
+    <select id="getFloors" resultType="floor">
+        select * from floor
+        <if test="name != null and name != ''">
+            where name like "%${name}%"
+        </if>
+        order by name;
+    </select>
+    <update id="updateFloor" parameterType="floor">
+        update floor set name = #{name}, remark = #{remark} where id = #{id};
+    </update>
+    <delete id="deleteFloorById" parameterType="long">
+        delete from floor where id = #{id};
+    </delete>
+    <insert id="addFloor" parameterType="floor">
+        insert into floor(name, remark) values (#{name}, #{remark});
+    </insert>
+</mapper>
