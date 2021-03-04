@@ -27,9 +27,12 @@
         </where>
     </select>
     <update id="updateRoomType" parameterType="roomType">
-        update room_type set photo = #{photo}, price = #{price}, liveNum = #{liveNum}, bedNum = #{bedNum},
+        update room_type set name = #{name}, photo = #{photo}, price = #{price}, liveNum = #{liveNum}, bedNum = #{bedNum},
         roomNum = #{roomNum}, avilableNum = #{avilableNum}, bookNum = #{bookNum}, livedNum = #{livedNum}, status = #{status}, remark = #{remark}
         where id = #{id};
     </update>
+    <delete id="deleteRoomTypeById" parameterType="long">
+        delete from room_type where id = #{id};
+    </delete>
 
 </mapper>

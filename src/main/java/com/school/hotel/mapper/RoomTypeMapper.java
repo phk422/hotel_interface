@@ -35,4 +35,11 @@ public interface RoomTypeMapper {
      * @return
      */
     int updateRoomType(RoomType roomType);
+
+    /**
+     * 根据id删除房型
+     * @param id
+     * @return
+     */
+    int deleteRoomTypeById(Long id);
 }

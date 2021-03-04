@@ -8,4 +8,6 @@ public interface RoomTypeService {
     PageBean<RoomType> getRoomTypes(PageBean pageBean, String name, Integer status);
 
     int updateRoomType(RoomType roomType);
+
+    int deleteRoomType(RoomType roomType);
 }

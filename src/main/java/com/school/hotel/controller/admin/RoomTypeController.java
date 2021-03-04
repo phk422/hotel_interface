@@ -40,4 +40,10 @@ public class RoomTypeController {
     public Result updateRoomType(@RequestBody RoomType roomType) {
         return Result.success(service.updateRoomType(roomType));
     }
+
+    @UserLoginToken
+    @PostMapping("/deleteRoomType")
+    public Result deleteRoomType(@RequestBody RoomType roomType) {
+        return Result.success(service.deleteRoomType(roomType));
+    }
 }

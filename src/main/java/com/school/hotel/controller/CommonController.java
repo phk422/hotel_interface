@@ -4,15 +4,15 @@ import com.school.hotel.pojo.Result;
 import com.school.hotel.service.CommonService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.util.ResourceUtils;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.UUID;
+import java.util.Map;
 
 /**
  * @Description TODO
@@ -37,6 +37,20 @@ public class CommonController {
     public Result upload(@RequestParam("file") MultipartFile file)
             throws IllegalStateException, IOException {
         String filePath = service.upload(file);
-        return Result.success(filePath); // 文件名返回给前端
+        return Result.success(filePath);
+    }
+
+    /**
+     * 根据文件名称删除文件
+     * @param params
+     * @return
+     */
+    @RequestMapping("/deleteImg")
+    public Result deleteImg(@RequestBody Map<String, String> params) {
+        try {
+            return Result.success(service.deleteImgByPath(params.get("filePath")));
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

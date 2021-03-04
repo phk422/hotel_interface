@@ -13,4 +13,11 @@ public interface CommonService {
      * @return
      */
     String upload(MultipartFile file) throws IOException;
+
+    /**
+     * 删除图片
+     * @param imgName
+     * @return
+     */
+    String deleteImgByPath(String imgName) throws FileNotFoundException;
 }

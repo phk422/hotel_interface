@@ -46,8 +46,23 @@ public class CommonServiceImpl implements CommonService {
         }
         // 写入文件
         file.transferTo(filePath);
-        log.info("上传成功！");
-
+        log.info("上传成功，文件名称为：" + fileName );
+        // 返回文件名称
         return "/img/" + fileName;
+    }
+
+    @Override
+    public String deleteImgByPath(String imgPath) throws FileNotFoundException {
+        String pathOne = ResourceUtils.getURL("classpath:").getPath() + "static";
+        String filePath = pathOne + imgPath;
+        File file = new File(filePath);
+        log.info("删除文件路径：" + filePath);
+        if (file.exists()) {
+            file.delete();
+            return "文件删除成功！";
+        } else  {
+            log.debug(filePath + "不存在");
+            return "文件不存在！";
+        }
     }
 }

@@ -3,11 +3,13 @@ package com.school.hotel.service.impl;
 import com.school.hotel.mapper.RoomTypeMapper;
 import com.school.hotel.pojo.PageBean;
 import com.school.hotel.pojo.RoomType;
+import com.school.hotel.service.CommonService;
 import com.school.hotel.service.RoomTypeService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.FileNotFoundException;
 import java.util.List;
 
 /**
@@ -20,6 +22,8 @@ import java.util.List;
 public class RoomTypeServiceImpl implements RoomTypeService {
     @Autowired
     private RoomTypeMapper mapper;
+    @Autowired
+    private CommonService commonService;
     @Override
     public PageBean<RoomType> getRoomTypes(PageBean pageBean, String name, Integer status) {
         if (status == -1) status = null;
@@ -43,6 +47,17 @@ public class RoomTypeServiceImpl implements RoomTypeService {
     @Override
     public int updateRoomType(RoomType roomType) {
         return mapper.updateRoomType(roomType);
+    }
+
+    @Override
+    public int deleteRoomType(RoomType roomType) {
+        try {
+            String res = commonService.deleteImgByPath(roomType.getPhoto());
+            log.info(res);
+            return mapper.deleteRoomTypeById(roomType.getId());
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private Integer getTotalCount(String name, Integer status) {
