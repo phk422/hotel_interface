@@ -3,11 +3,15 @@ package com.school.hotel.service.impl;
 import com.school.hotel.mapper.RoomMapper;
 import com.school.hotel.pojo.PageBean;
 import com.school.hotel.pojo.Room;
+import com.school.hotel.service.CommonService;
 import com.school.hotel.service.RoomService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
+import java.io.FileNotFoundException;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.List;
 
 /**
@@ -20,6 +24,8 @@ import java.util.List;
 public class RoomServiceImpl implements RoomService {
     @Autowired
     private RoomMapper mapper;
+    @Autowired
+    private CommonService commonService;
     @Override
     public Object getRooms(PageBean pageBean, Long roomTypeId, Long floorId, Long status, String sn) {
         if (sn != null && sn.length() < 1) sn = null;
@@ -45,6 +51,20 @@ public class RoomServiceImpl implements RoomService {
     @Override
     public int updateRoom(Room room) {
         return mapper.updateRoom(room);
+    }
+
+    @Override
+    public int deleteRoom(Room room) {
+        try {
+            int i = mapper.deleteRoomById(room.getId());
+            String res = commonService.deleteImgByPath(room.getPhoto());
+            log.info(res);
+            return i;
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (DataAccessException e) {
+            return -1;
+        }
     }
 
     private Integer getTotalCount(Long roomTypeId, Long floorId, Long status, String sn) {

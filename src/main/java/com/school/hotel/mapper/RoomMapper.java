@@ -2,7 +2,9 @@ package com.school.hotel.mapper;
 
 import com.school.hotel.pojo.Room;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.dao.DataAccessException;
 
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.List;
 
 public interface RoomMapper {
@@ -41,4 +43,6 @@ public interface RoomMapper {
      * @return
      */
     int updateRoom(Room room);
+
+    int deleteRoomById(Long id) throws DataAccessException;
 }

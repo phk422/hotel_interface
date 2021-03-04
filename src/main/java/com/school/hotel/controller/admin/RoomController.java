@@ -68,6 +68,12 @@ public class RoomController {
         return Result.success(service.updateRoom(room));
     }
 
+    @UserLoginToken
+    @PostMapping("/deleteRoom")
+    public Result deleteRoom(@RequestBody Room room) {
+        return Result.success(service.deleteRoom(room));
+    }
+
     private static boolean isNull(String str) {
         return str != null && str.equals("null");
     }

@@ -42,4 +42,8 @@
         update room set photo = #{photo}, sn = #{sn}, roomTypeId = #{roomTypeId}, floorId = #{floorId}, status = #{status}, remark = #{remark}
         where id = #{id};
     </update>
+
+    <delete id="deleteRoomById" parameterType="long">
+        delete from room where id = #{id};
+    </delete>
 </mapper>
