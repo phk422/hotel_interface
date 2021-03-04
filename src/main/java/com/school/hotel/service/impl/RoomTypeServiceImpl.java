@@ -25,7 +25,10 @@ public class RoomTypeServiceImpl implements RoomTypeService {
     @Autowired
     private CommonService commonService;
     @Override
-    public PageBean<RoomType> getRoomTypes(PageBean pageBean, String name, Integer status) {
+    public Object getRoomTypes(PageBean pageBean, String name, Integer status) {
+        if (status == -1 && name == null && pageBean == null) {
+            return mapper.getRoomTypes(null, null, null, null);
+        }
         if (status == -1) status = null;
         name = name.replace("\"", "");
         // 查询总记录数

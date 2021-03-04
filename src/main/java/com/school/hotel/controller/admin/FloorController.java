@@ -20,7 +20,7 @@ public class FloorController {
     @Autowired
     private FloorService service;
 
-//    @UserLoginToken
+    @UserLoginToken
     @PostMapping("/getFloors")
     public Result getFloors(@RequestBody Map<String, String> map) {
         return Result.success(service.getFloors(map.get("name")));

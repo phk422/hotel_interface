@@ -5,7 +5,7 @@ import com.school.hotel.pojo.RoomType;
 
 public interface RoomTypeService {
 
-    PageBean<RoomType> getRoomTypes(PageBean pageBean, String name, Integer status);
+    Object getRoomTypes(PageBean pageBean, String name, Integer status);
 
     int updateRoomType(RoomType roomType);
 

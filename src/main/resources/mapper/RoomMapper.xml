@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.school.hotel.mapper.RoomMapper">
+    <select id="getRooms" resultType="room">
+        select * from room
+        <where>
+            <if test="roomTypeId != null">
+                roomTypeId = #{roomTypeId}
+            </if>
+            <if test="status != null">
+                and status = #{status}
+            </if>
+            <if test="floorId != null">
+                and floorId = #{floorId}
+            </if>
+            <if test="sn != null">
+                and sn = #{sn}
+            </if>
+        </where>
+        <if test="startPage != null and pageSize != null">
+            limit #{startPage}, #{pageSize}
+        </if>
+    </select>
+    <select id="getTotalCount" resultType="int">
+        select count(*) from room
+        <where>
+            <if test="roomTypeId != null">
+                roomTypeId = #{roomTypeId}
+            </if>
+            <if test="status != null">
+                and status = #{status}
+            </if>
+            <if test="floorId != null">
+                and floorId = #{floorId}
+            </if>
+            <if test="sn != null">
+                and sn = #{sn}
+            </if>
+        </where>
+    </select>
+</mapper>

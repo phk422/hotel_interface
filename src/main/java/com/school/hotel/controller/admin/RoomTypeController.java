@@ -30,8 +30,18 @@ public class RoomTypeController {
     public Result getRoomTypes(@RequestBody Map<String, Object> params) {
         String pageBean = JSON.toJSONString(params.get("pageBean"));
         String name = JSON.toJSONString(params.get("name"));
-        Integer status = Integer.parseInt(JSON.toJSONString(params.get("status")));
-        PageBean<RoomType> roomTypes = service.getRoomTypes(JSON.parseObject(pageBean, PageBean.class), name, status);
+        String statusStr = JSON.toJSONString(params.get("status"));
+        if (isNull(statusStr)) {
+            statusStr = "-1";
+        }
+        if (isNull(pageBean)) {
+            pageBean = null;
+        }
+        if (isNull(name)) {
+            name = null;
+        }
+        Integer status = Integer.parseInt(statusStr);
+        Object roomTypes = service.getRoomTypes(JSON.parseObject(pageBean, PageBean.class), name, status);
         return Result.success(roomTypes);
     }
 
@@ -51,5 +61,10 @@ public class RoomTypeController {
     @PostMapping("/addRoomType")
     public Result addRoomType(@RequestBody RoomType roomType) {
         return Result.success(service.addRoomType(roomType));
+    }
+
+
+    private static boolean isNull(String str) {
+        return str != null && str.equals("null");
     }
 }
