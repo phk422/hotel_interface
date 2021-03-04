@@ -42,6 +42,11 @@ public class RoomServiceImpl implements RoomService {
         return pageBean;
     }
 
+    @Override
+    public int updateRoom(Room room) {
+        return mapper.updateRoom(room);
+    }
+
     private Integer getTotalCount(Long roomTypeId, Long floorId, Long status, String sn) {
         return mapper.getTotalCount(roomTypeId, floorId, status, sn);
     }

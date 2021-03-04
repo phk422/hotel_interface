@@ -38,4 +38,8 @@
             </if>
         </where>
     </select>
+    <update id="updateRoom" parameterType="room">
+        update room set photo = #{photo}, sn = #{sn}, roomTypeId = #{roomTypeId}, floorId = #{floorId}, status = #{status}, remark = #{remark}
+        where id = #{id};
+    </update>
 </mapper>

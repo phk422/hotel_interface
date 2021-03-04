@@ -34,4 +34,11 @@ public interface RoomMapper {
                           @Param("floorId") Long floorId,
                           @Param("status") Long status,
                           @Param("sn") String sn);
+
+    /**
+     * 修改room
+     * @param room
+     * @return
+     */
+    int updateRoom(Room room);
 }

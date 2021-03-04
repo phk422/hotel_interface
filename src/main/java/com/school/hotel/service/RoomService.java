@@ -8,4 +8,6 @@ import java.util.List;
 public interface RoomService {
 
     Object getRooms(PageBean pageBean, Long roomTypeId, Long floorId, Long status, String sn);
+
+    int updateRoom(Room room);
 }

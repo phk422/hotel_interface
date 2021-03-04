@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.school.hotel.annotation.UserLoginToken;
 import com.school.hotel.pojo.PageBean;
 import com.school.hotel.pojo.Result;
+import com.school.hotel.pojo.Room;
 import com.school.hotel.service.RoomService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,6 +60,12 @@ public class RoomController {
         Object res = service.getRooms(pageBean, roomTypeId,
                 floorId, status, sn);
         return Result.success(res);
+    }
+
+    @UserLoginToken
+    @PostMapping("/updateRoom")
+    public Result updateRoom(@RequestBody Room room) {
+        return Result.success(service.updateRoom(room));
     }
 
     private static boolean isNull(String str) {
