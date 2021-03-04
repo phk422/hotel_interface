@@ -2,6 +2,9 @@ package com.school.hotel.service;
 
 import com.school.hotel.pojo.PageBean;
 import com.school.hotel.pojo.Room;
+import org.springframework.dao.DataAccessException;
+
+import java.io.FileNotFoundException;
 
 
 public interface RoomService {
@@ -11,4 +14,6 @@ public interface RoomService {
     int updateRoom(Room room);
 
     int deleteRoom(Room room);
+
+    int addRoom(Room room) throws DataAccessException, FileNotFoundException;
 }

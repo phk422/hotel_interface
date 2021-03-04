@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.io.FileNotFoundException;
 import java.util.Map;
 
 /**
@@ -73,6 +74,13 @@ public class RoomController {
     public Result deleteRoom(@RequestBody Room room) {
         return Result.success(service.deleteRoom(room));
     }
+
+    @UserLoginToken
+    @PostMapping("/addRoom")
+    public Result addRoom(@RequestBody Room room) throws FileNotFoundException {
+        return Result.success(service.addRoom(room));
+    }
+
 
     private static boolean isNull(String str) {
         return str != null && str.equals("null");

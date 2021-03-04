@@ -44,5 +44,18 @@ public interface RoomMapper {
      */
     int updateRoom(Room room);
 
+    /**
+     * 根据id删除房间
+     * @param id
+     * @return
+     * @throws DataAccessException
+     */
     int deleteRoomById(Long id) throws DataAccessException;
+
+    /**
+     * 添加房间
+     * @param room
+     * @return
+     */
+    int addRoom(Room room);
 }

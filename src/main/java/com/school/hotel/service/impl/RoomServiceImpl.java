@@ -67,7 +67,20 @@ public class RoomServiceImpl implements RoomService {
         }
     }
 
+    @Override
+    public int addRoom(Room room) throws FileNotFoundException {
+        try {
+            int i = mapper.addRoom(room);
+            return i;
+        } catch (DataAccessException e) {
+            // 删除头像
+            commonService.deleteImgByPath(room.getPhoto());
+            throw new RuntimeException("添加房间异常，");
+        }
+    }
+
     private Integer getTotalCount(Long roomTypeId, Long floorId, Long status, String sn) {
         return mapper.getTotalCount(roomTypeId, floorId, status, sn);
     }
+
 }

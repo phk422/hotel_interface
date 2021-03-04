@@ -17,6 +17,7 @@
                 and sn = #{sn}
             </if>
         </where>
+        order by sn
         <if test="startPage != null and pageSize != null">
             limit #{startPage}, #{pageSize}
         </if>
@@ -46,4 +47,9 @@
     <delete id="deleteRoomById" parameterType="long">
         delete from room where id = #{id};
     </delete>
+
+    <insert id="addRoom" parameterType="room">
+        insert into room(photo, sn, roomTypeId, floorId, status, remark) values
+        (#{photo}, #{sn}, #{roomTypeId}, #{floorId}, #{status}, #{remark});
+    </insert>
 </mapper>
