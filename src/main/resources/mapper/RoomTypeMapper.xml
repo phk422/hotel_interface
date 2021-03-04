@@ -34,5 +34,11 @@
     <delete id="deleteRoomTypeById" parameterType="long">
         delete from room_type where id = #{id};
     </delete>
+    <insert id="addRoomType" parameterType="roomType">
+        insert into room_type(name, photo, price, liveNum, bedNum, roomNum,
+        avilableNum, bookNum, livedNum, status, remark)
+        values (#{name}, #{photo}, #{price}, #{liveNum}, #{bedNum},
+        #{roomNum}, #{avilableNum}, #{bookNum}, #{livedNum}, #{status}, #{remark});
+    </insert>
 
 </mapper>

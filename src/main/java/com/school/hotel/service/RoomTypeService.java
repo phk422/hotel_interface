@@ -10,4 +10,6 @@ public interface RoomTypeService {
     int updateRoomType(RoomType roomType);
 
     int deleteRoomType(RoomType roomType);
+
+    int addRoomType(RoomType roomType);
 }

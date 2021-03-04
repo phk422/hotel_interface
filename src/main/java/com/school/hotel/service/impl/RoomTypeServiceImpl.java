@@ -60,6 +60,14 @@ public class RoomTypeServiceImpl implements RoomTypeService {
         }
     }
 
+    @Override
+    public int addRoomType(RoomType roomType) {
+        roomType.setAvilableNum(roomType.getLiveNum());
+        roomType.setBookNum(0);
+        roomType.setLivedNum(0);
+        return mapper.addRoomType(roomType);
+    }
+
     private Integer getTotalCount(String name, Integer status) {
         return mapper.getTotalCount(name, status);
     }
