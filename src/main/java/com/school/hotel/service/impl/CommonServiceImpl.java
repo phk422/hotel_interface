@@ -1,8 +1,8 @@
 package com.school.hotel.service.impl;
 
-import com.school.hotel.pojo.Result;
 import com.school.hotel.service.CommonService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ResourceUtils;
 import org.springframework.web.multipart.MultipartFile;
@@ -27,7 +27,10 @@ public class CommonServiceImpl implements CommonService {
             log.info("文件上传失败");
             return "文件上传失败！";
         }
+
         String pathOne = ResourceUtils.getURL("classpath:").getPath() + "static/img";
+//        String pathOne = CommonServiceImpl.class.getClassLoader().getResource("static/img").getPath();
+        log.info(pathOne);
         String path = pathOne.replace('/', '\\').substring(1, pathOne.length());
         //用于查看路径是否正确
         log.info(path);
