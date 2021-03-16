@@ -29,7 +29,10 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public Object getOrders(PageBean pageBean, String idCard, String phone, String roomTypeId, String status) {
         if (pageBean == null) {
-            return mapper.getOrders(null, null, null, null, null, null);
+            pageBean = new PageBean();
+            List<Order> orders = mapper.getOrders(null, null, null, null, null, null);
+            pageBean.setList(orders);
+            return pageBean;
         }
         // 查询总记录数
         Integer totalCount = getTotalCount(idCard, phone, roomTypeId, status);

@@ -31,7 +31,8 @@ public class RoomController {
 
     @UserLoginToken
     @PostMapping("/getRooms")
-    public Result getRooms(@RequestBody Map<String, Object> params) {
+    public Result getRooms(@RequestBody(required = false) Map<String, Object> params) {
+        if (params == null) return Result.success(service.getRooms(null, null, null, null, null));
         String pageBeanStr = JSON.toJSONString(params.get("pageBean"));
         String roomTypeIdStr = JSON.toJSONString(params.get("roomTypeId"));
         String floorIdStr = JSON.toJSONString(params.get("floorId"));

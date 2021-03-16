@@ -40,6 +40,10 @@ public class OrderController {
         if (pageBeanStr != null && pageBeanStr.length() > 0 && !pageBeanStr.equals("null")) {
             pageBean = JSON.parseObject(pageBeanStr, PageBean.class);
         }
+        if (idCard != null && idCard.length() < 1) idCard = null;
+        if (phone != null && phone.length() < 1) phone = null;
+        if (status != null && status.length() < 1) status = null;
+        if (roomTypeId != null && roomTypeId.length() < 1) roomTypeId = null;
         return Result.success(service.getOrders(pageBean, idCard, phone, roomTypeId, status));
     }
 }

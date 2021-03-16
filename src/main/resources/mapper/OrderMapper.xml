@@ -13,7 +13,7 @@
                 and idCard like '%${idCard}%'
             </if>
             <if test="phone != null">
-                and phone like "%${phone}%"
+                and mobile like '%${phone}%'
             </if>
         </where>
     </sql>

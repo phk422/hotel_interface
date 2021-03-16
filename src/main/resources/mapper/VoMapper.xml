@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.school.hotel.mapper.VoMapper">
+    <sql id="select_where">
+        <where>
+            <if test="name != null and name != ''">
+                name like '%${name}%'
+            </if>
+            <if test="mobile != null">
+                and mobile like '%${mobile}%'
+            </if>
+            <if test="roomId != null">
+                and roomId like '%${roomId}%'
+            </if>
+            <if test="roomTypeId != null">
+                and roomTypeId = #{roomTypeId}
+            </if>
+            <if test="status != null">
+                and status = #{status}
+            </if>
+            <if test="idCard != null">
+                and idCard like '%${idCard}%'
+            </if>
+        </where>
+    </sql>
+    <sql id="select_list">
+        SELECT t1.`id` id, t1.`checkinPrice` checkinPrice, t1.`name` name, t1.`idCard` idCard,
+		t1.`mobile` mobile, t1.`status` status,
+		t1.`arriveDate` arriveDate, t1.`leaveDate` leaveDate, t1.`bookOrderId` bookOrderId, t1.`createTime`, t1.`remark` remark, t2.sn roomSn,
+		t3.name roomType, t2.id roomId, t3.id roomTypeId
+		FROM checkin t1 JOIN room t2 ON t1.`roomId` = t2.`id` JOIN room_type t3 ON t1.`roomTypeId` = t3.`id`
+    </sql>
+    <select id="getCheckinVo" resultType="CheckinVo">
+        select t.* from (
+            <include refid="select_list" />
+        ) t
+        <include refid="select_where" />
+        <if test="startPage != null and pageSize != null">
+            limit #{startPage}, #{pageSize}
+        </if>
+    </select>
+
+    <select id="getTotalCount" resultType="int">
+        SELECT count(*) from (
+            select ta.* from (
+                <include refid="select_list" />
+            ) ta
+            <include refid="select_where" />
+        ) t
+    </select>
+</mapper>
