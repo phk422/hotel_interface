@@ -1,11 +1,9 @@
 package com.school.hotel.pojo;
 
-import org.springframework.stereotype.Component;
 
 /**
  * 房间类型实体类
  */
-@Component
 public class RoomType {
 	private Long id;//房间类型id
 	private String name;//房间名称

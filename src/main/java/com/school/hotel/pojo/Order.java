@@ -1,13 +1,10 @@
 package com.school.hotel.pojo;
 
-import org.springframework.stereotype.Component;
-
 import java.util.Date;
 
 /**
  * 预定订单实体类
  */
-@Component
 public class Order {
 	private Long id;//预定订单id
 	private Long accountId;//客户id

@@ -1,13 +1,9 @@
 package com.school.hotel.pojo;
 
-import org.springframework.stereotype.Component;
 
 /**
  * 客户实体类
- * @author Administrator
- *
  */
-@Component
 public class Account {
 	private Long id;//客户id
 	private String name;//客户登录名

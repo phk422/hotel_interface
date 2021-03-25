@@ -58,4 +58,18 @@ public interface UserMapper {
      * @return
      */
     int updateAccount(Account account);
+
+    /**
+     * 增加account
+     * @param account
+     * @return
+     */
+    Integer addAccount(Account account);
+
+    /**
+     * 查询account
+     * @param account
+     * @return
+     */
+    Account getAccount(Account account);
 }

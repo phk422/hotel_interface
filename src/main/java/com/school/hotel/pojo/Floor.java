@@ -1,13 +1,10 @@
 package com.school.hotel.pojo;
 
-import org.springframework.stereotype.Component;
 
 /**
  * 楼层实体类
- * @author Administrator
  *
  */
-@Component
 public class Floor {
 	private Long id;//楼层id
 	private String name;//楼层名称

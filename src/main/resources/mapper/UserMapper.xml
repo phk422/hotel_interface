@@ -42,4 +42,12 @@
         update account set name = #{name}, password = #{password}, realName = #{realName}, idCard = #{idCard},
         mobile = #{mobile}, address = #{address}, status = #{status} where id = #{id};
     </update>
+
+    <insert id="addAccount" parameterType="account">
+        insert into account(name, password, mobile) values(#{name}, #{password}, #{mobile});
+    </insert>
+
+    <select id="getAccount" parameterType="account" resultType="account">
+        select * from account where name = #{name} and password = #{password};
+    </select>
 </mapper>

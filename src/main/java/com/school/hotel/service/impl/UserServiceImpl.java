@@ -23,6 +23,11 @@ public class UserServiceImpl implements UserService {
     private UserMapper userMapper;
 
     @Override
+    public Integer register(Account account) {
+        return userMapper.addAccount(account);
+    }
+
+    @Override
     public List<User> findUsers() {
         return userMapper.findUsers();
     }
@@ -71,6 +76,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public int updateAccount(Account account) {
         return userMapper.updateAccount(account);
+    }
+
+    @Override
+    public Account login(Account account) {
+        return userMapper.getAccount(account);
     }
 
 

@@ -1,14 +1,10 @@
 package com.school.hotel.pojo;
 
-import org.springframework.stereotype.Component;
-
 import java.util.Date;
 
 /**
  * 入住实体类
- *
  */
-@Component
 public class Checkin {
 	private Long id;//入住id
 	private Long roomId;//房间id

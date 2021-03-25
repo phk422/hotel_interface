@@ -1,13 +1,11 @@
 package com.school.hotel.pojo.vo;
 
-import org.springframework.stereotype.Component;
 
 import java.util.Date;
 
 /**
  * 入住界面视图
  */
-@Component
 public class CheckinVo {
 	private Long id;//入住id
 	private String roomSn; // 房间编号

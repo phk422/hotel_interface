@@ -55,4 +55,14 @@ public class UserController {
     public Result updateAccount(@RequestBody Account account) {
         return Result.success(userService.updateAccount(account));
     }
+
+    @PostMapping("/register")
+    public Result register(@RequestBody Account account) {
+        return Result.success(userService.register(account));
+    }
+
+    @PostMapping("/login")
+    public Result login(@RequestBody Account account) {
+        return Result.success(userService.login(account));
+    }
 }

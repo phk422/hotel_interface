@@ -2,7 +2,6 @@ package com.school.hotel.pojo;
 
 /**
  * @Description 返回的结果对象
- * @Autor Peng hk
  * @Date 2021/2/28
  **/
 public class Result<T> {
