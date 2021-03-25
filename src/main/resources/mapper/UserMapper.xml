@@ -50,4 +50,8 @@
     <select id="getAccount" parameterType="account" resultType="account">
         select * from account where name = #{name} and password = #{password};
     </select>
+
+    <select id="getAccountByName" parameterType="string">
+        select count(*) from account where name = #{name};
+    </select>
 </mapper>

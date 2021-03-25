@@ -72,4 +72,6 @@ public interface UserMapper {
      * @return
      */
     Account getAccount(Account account);
+
+    Integer getAccountByName(String name);
 }

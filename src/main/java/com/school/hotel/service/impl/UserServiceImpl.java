@@ -24,7 +24,11 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Integer register(Account account) {
-        return userMapper.addAccount(account);
+        if (userMapper.getAccountByName(account.getName()) > 0) {
+            return userMapper.addAccount(account);
+        }
+        // 用户名存在
+        return -1;
     }
 
     @Override
@@ -80,7 +84,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Account login(Account account) {
-        return userMapper.getAccount(account);
+        Account res = userMapper.getAccount(account);
+        res.setPassword("*");
+        return res;
     }
 
 
